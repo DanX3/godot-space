@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://b2gh6engwadai"]
+
+[ext_resource type="Texture2D" uid="uid://bglehcshbs0rx" path="res://space-assets/meteor_squareLarge.png" id="1_8g3rh"]
+[ext_resource type="Script" path="res://solution/scripts/destroyAfter.gd" id="2_so8t6"]
+
+[sub_resource type="Curve" id="Curve_w3b4f"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.195021, 0.978947), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_n1nhp"]
+offsets = PackedFloat32Array(0, 0.204762, 0.557143, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.89, 0.815833, 0, 1, 0.290196, 0.254902, 0.247059, 0.933333, 0, 0, 0, 0.780392)
+
+[node name="Explosion" type="CPUParticles2D"]
+amount = 32
+lifetime = 2.0
+explosiveness = 0.83
+lifetime_randomness = 0.4
+texture = ExtResource("1_8g3rh")
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 53.57
+initial_velocity_max = 125.0
+damping_max = 10.0
+angle_max = 308.6
+scale_amount_min = 0.1
+scale_amount_curve = SubResource("Curve_w3b4f")
+color_ramp = SubResource("Gradient_n1nhp")
+
+[node name="DestroyAfter" type="Node" parent="."]
+script = ExtResource("2_so8t6")
+timeToDestruction = 2.0

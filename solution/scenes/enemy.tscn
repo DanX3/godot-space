@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://c13ccv1gd43ja"]
+
+[ext_resource type="Script" path="res://solution/scripts/enemy.gd" id="1_30v0v"]
+[ext_resource type="Texture2D" uid="uid://bdu7fxdfriri7" path="res://space-assets/enemy_D.png" id="1_jeekq"]
+[ext_resource type="Texture2D" uid="uid://drmhyw2pnbeyx" path="res://space-assets/star_tiny.png" id="2_xarhj"]
+
+[sub_resource type="Curve" id="Curve_y6hpn"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_c2i1m"]
+offsets = PackedFloat32Array(0, 0.238095, 0.542857, 0.904762)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 0, 1, 1, 0.14, 0.14, 1, 0, 0, 0, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eupit"]
+radius = 26.1725
+
+[node name="Enemy" type="CharacterBody2D"]
+collision_layer = 2
+script = ExtResource("1_30v0v")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+amount = 16
+lifetime = 2.0
+lifetime_randomness = 0.5
+texture = ExtResource("2_xarhj")
+gravity = Vector2(0, 0)
+angle_min = -720.0
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_y6hpn")
+color_ramp = SubResource("Gradient_c2i1m")
+
+[node name="EnemyD" type="Sprite2D" parent="."]
+modulate = Color(1, 0.219608, 0.219608, 1)
+rotation = 1.57079
+texture = ExtResource("1_jeekq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_eupit")

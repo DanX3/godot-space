@@ -1,0 +1,72 @@
+[gd_scene load_steps=8 format=3 uid="uid://bwgl3ekt8mn8x"]
+
+[ext_resource type="Texture2D" uid="uid://l250th8oj27j" path="res://space-assets/light.png" id="1_2nfp1"]
+[ext_resource type="Texture2D" uid="uid://brha1oksigwhr" path="res://space-assets/star_small.png" id="2_8sjfn"]
+[ext_resource type="PackedScene" uid="uid://hkipk162wumg" path="res://solution/scenes/player.tscn" id="3_belfx"]
+[ext_resource type="Script" path="res://solution/scripts/Spawner.gd" id="4_3x02q"]
+
+[sub_resource type="Curve" id="Curve_8nagq"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.228916, 1), 0.0, 0.0, 0, 0, Vector2(0.807229, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_hwg8h"]
+curve = SubResource("Curve_8nagq")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_po3v1"]
+emission_shape = 3
+emission_box_extents = Vector3(640, 400, 1)
+particle_flag_disable_z = true
+direction = Vector3(0, 0, 0)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+angular_velocity_min = -150.96
+angular_velocity_max = 174.19
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+radial_accel_max = 10.0
+scale_min = 0.2
+scale_curve = SubResource("CurveTexture_hwg8h")
+
+[node name="Game" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="SkyBackground" type="ColorRect" parent="CanvasLayer"]
+offset_right = 1280.0
+offset_bottom = 800.0
+color = Color(0.00392157, 0.0196078, 0.0705882, 1)
+
+[node name="SkyHue" type="TextureRect" parent="CanvasLayer"]
+modulate = Color(0, 0.235294, 0.407843, 1)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -213.0
+offset_top = -133.0
+offset_right = 213.0
+offset_bottom = 133.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_2nfp1")
+
+[node name="Stars" type="GPUParticles2D" parent="CanvasLayer"]
+position = Vector2(640, 400)
+amount = 64
+process_material = SubResource("ParticleProcessMaterial_po3v1")
+texture = ExtResource("2_8sjfn")
+lifetime = 5.0
+preprocess = 5.0
+
+[node name="Player" parent="." instance=ExtResource("3_belfx")]
+
+[node name="Spawner" type="Node" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("4_3x02q")
+player = NodePath("../Player")
+
+[node name="Timer" type="Timer" parent="Spawner"]
+autostart = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[connection signal="timeout" from="Spawner/Timer" to="Spawner" method="_on_timer_timeout"]

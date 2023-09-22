@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://gei62yf1ycye"]
+
+[ext_resource type="Script" path="res://solution/scripts/bullet.gd" id="1_k7mda"]
+[ext_resource type="Texture2D" uid="uid://cdf8glxlqvjoo" path="res://space-assets/meteor_small.png" id="2_ghig8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3oha5"]
+radius = 9.0
+
+[node name="Bullet" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_k7mda")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_3oha5")
+
+[node name="MeteorSmall" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 0, 1)
+scale = Vector2(0.53125, 0.53125)
+texture = ExtResource("2_ghig8")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

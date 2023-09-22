@@ -1,0 +1,351 @@
+[gd_scene load_steps=15 format=3 uid="uid://hkipk162wumg"]
+
+[ext_resource type="Script" path="res://solution/scripts/player.gd" id="1_6ooaw"]
+[ext_resource type="Texture2D" uid="uid://dn5gmmtw6rh4v" path="res://space-assets/ship_L.png" id="2_ekwo7"]
+[ext_resource type="Texture2D" uid="uid://cjdnkpw15xq0m" path="res://space-assets/meteor_squareSmall.png" id="3_bx2x4"]
+[ext_resource type="Texture2D" uid="uid://cddkk71hme2o7" path="res://space-assets/meteor_large.png" id="4_5tws7"]
+[ext_resource type="Texture2D" uid="uid://dc13t6ice10v2" path="res://space-assets/effect_purple.png" id="5_k2gfs"]
+[ext_resource type="Texture2D" uid="uid://bdu7fxdfriri7" path="res://space-assets/enemy_D.png" id="6_oqngh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uyxtq"]
+radius = 24.0
+
+[sub_resource type="Curve" id="Curve_33enx"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_byg16"]
+offsets = PackedFloat32Array(0, 0.109524, 0.628571, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.952564, 0.965734, 0.64812, 1, 1, 0.199236, 0.71243, 1, 0.134294, 0.140121, 0.420157, 1)
+
+[sub_resource type="Animation" id="Animation_km7cm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UltraCannon/MeteorLarge:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UltraCannon/MeteorLarge:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("UltraCannon/EffectPurple:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("UltraCannon/OrbitingParticles:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("UltraCannon/OrbitingParticles:initial_velocity_max")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("UltraCannon/OrbitingParticles:initial_velocity_min")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("UltraCannon/EffectPurple/ShootingParticles:emitting")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_wr2s4"]
+resource_name = "UltraCannon"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UltraCannon/MeteorLarge:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7, 2.2, 2.4, 2.6, 4.6, 5),
+"transitions": PackedFloat32Array(-2, 1, 0.5, -2, 1, 0.5, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0.736842, 0.736842), Vector2(0.488, 0.488), Vector2(2, 2), Vector2(0.6, 0.6), Vector2(0.6, 0.6), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UltraCannon/MeteorLarge:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 18.8496]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("UltraCannon/EffectPurple:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2.6, 4.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("UltraCannon/OrbitingParticles:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("UltraCannon/OrbitingParticles:initial_velocity_max")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 300.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("UltraCannon/OrbitingParticles:initial_velocity_min")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 250.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("UltraCannon/EffectPurple/ShootingParticles:emitting")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 2.6, 4.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3v8et"]
+_data = {
+"RESET": SubResource("Animation_km7cm"),
+"UltraCannon": SubResource("Animation_wr2s4")
+}
+
+[sub_resource type="Curve" id="Curve_oxedk"]
+_data = [Vector2(0, 0.421053), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_aiikn"]
+max_value = 50.0
+_data = [Vector2(0, 3), 0.0, 0.0, 0, 0]
+point_count = 1
+metadata/_snap_enabled = true
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+collision_mask = 0
+script = ExtResource("1_6ooaw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_uyxtq")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(0, 19)
+rotation = 1.57079
+emitting = false
+amount = 16
+lifetime = 1.5
+lifetime_randomness = 0.8
+texture = ExtResource("3_bx2x4")
+spread = 30.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 150.0
+initial_velocity_max = 250.0
+angle_max = 360.0
+scale_amount_min = 0.5
+scale_amount_max = 0.75
+scale_amount_curve = SubResource("Curve_33enx")
+color_ramp = SubResource("Gradient_byg16")
+
+[node name="ShipL" type="Sprite2D" parent="."]
+modulate = Color(0.933333, 0.843137, 0.247059, 1)
+position = Vector2(0, -5)
+texture = ExtResource("2_ekwo7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_3v8et")
+}
+
+[node name="UltraCannon" type="Node2D" parent="."]
+
+[node name="MeteorLarge" type="Sprite2D" parent="UltraCannon"]
+modulate = Color(0.882353, 0, 0.847059, 1)
+position = Vector2(0, -22)
+scale = Vector2(1e-05, 1e-05)
+texture = ExtResource("4_5tws7")
+
+[node name="EffectPurple" type="Sprite2D" parent="UltraCannon"]
+visible = false
+position = Vector2(0.000835231, -234.008)
+rotation = -3.14159
+scale = Vector2(1, 6.87525)
+texture = ExtResource("5_k2gfs")
+
+[node name="ShootingParticles" type="CPUParticles2D" parent="UltraCannon/EffectPurple"]
+position = Vector2(0.000287611, -31.4182)
+rotation = 1.57082
+scale = Vector2(0.145449, 1)
+skew = -2.51532e-05
+emitting = false
+amount = 64
+emission_shape = 3
+emission_rect_extents = Vector2(1, 15)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 600.0
+scale_amount_max = 2.0
+split_scale = true
+scale_curve_x = SubResource("Curve_oxedk")
+scale_curve_y = SubResource("Curve_aiikn")
+color = Color(0.929412, 0.929412, 0.929412, 1)
+
+[node name="OrbitingParticles" type="CPUParticles2D" parent="UltraCannon"]
+position = Vector2(-1, -3)
+emitting = false
+amount = 64
+preprocess = 1.0
+spread = 12.85
+gravity = Vector2(0, 0)
+orbit_velocity_min = 2.0
+orbit_velocity_max = 2.0
+angle_max = 514.3
+scale_amount_min = 0.5
+scale_amount_max = 3.0
+color = Color(0.921569, 0.137255, 0.266667, 1)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+offset_left = 6.0
+offset_top = 14.0
+offset_right = 166.0
+offset_bottom = 146.0
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 19.0
+offset_top = 80.0
+offset_right = 250.0
+offset_bottom = 184.0
+theme_override_font_sizes/font_size = 40
+text = "22.23s"
+
+[node name="GameOver" type="VBoxContainer" parent="CanvasLayer"]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -171.5
+offset_top = 172.0
+offset_right = 171.5
+offset_bottom = 293.0
+grow_horizontal = 2
+
+[node name="GameOverLabel" type="Label" parent="CanvasLayer/GameOver"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "GAME OVER"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="CanvasLayer/GameOver"]
+layout_mode = 2
+text = "Retry"
+
+[node name="EnemyD" type="TextureRect" parent="CanvasLayer"]
+modulate = Color(1, 0.14902, 0.14902, 1)
+offset_left = 55.0
+offset_top = 27.0
+offset_right = 90.0
+offset_bottom = 62.0
+rotation = 1.57079
+texture = ExtResource("6_oqngh")
+expand_mode = 1
+
+[node name="EnemyKilled" type="Label" parent="CanvasLayer"]
+offset_left = 62.0
+offset_top = 15.0
+offset_right = 293.0
+offset_bottom = 119.0
+theme_override_font_sizes/font_size = 40
+text = "0"
+
+[connection signal="pressed" from="CanvasLayer/GameOver/Button" to="." method="_on_button_pressed"]
